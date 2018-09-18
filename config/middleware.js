@@ -1,5 +1,5 @@
  var middleware = function(req, res, next) {
-     console.log(res.statusCode)
-     next()
+     res.status(404)
+     res.render('not-found')
  }
  module.exports = middleware
