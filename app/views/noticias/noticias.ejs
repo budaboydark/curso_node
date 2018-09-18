@@ -1,12 +1,36 @@
 <!DOCTYPE html>
-	<html lang="pt-br">
-		<head>
-			<meta charset="utf-8"/>
-			<title>Notícias22222222222</title>
-		</head>
-	<body>
+<html lang="pt-br">
 
-		<h1>NotíciasTESTE2</h1>
+<head>
+    <meta charset="utf-8" />
+    <title>NotÃ­cias</title>
+</head>
 
-	</body>
+<body>
+
+    <h1>MySQL com NodeJS</h1>
+    <table border="1">
+        <thead>
+            <th>id</th>
+            <th>Cliente</th>
+            <th>email</th>
+        </thead>
+        <tbody>
+            <% for(var i=0; i < noticias.length;i++){ %>
+                <tr>
+                    <td>
+                        <%= noticias[i]["id_cliente"]%>
+                    </td>
+                    <td>
+                        <%= noticias[i]["nome_fantasia_cli"]%>
+                    </td>
+                    <td>
+                        <%= noticias[i]["email_cli"]%>
+                    </td>
+                </tr>
+                <%  } %>
+        </tbody>
+    </table>
+</body>
+
 </html>
