@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Notícias</title>
+</head>
+
+<body>
+
+    <h1>MySQL com NodeJS</h1>
+    <table border="1">
+        <thead>
+            <th>id</th>
+            <th>conta</th>
+            <th>parcela</th>
+            <th>valor</th>
+        </thead>
+        <tbody>
+            <% for(var i=0; i < contas.length;i++){ %>
+                <tr>
+                    <td>
+                        <%= contas[i]["id"]%>
+                    </td>
+                    <td>
+                        <%= contas[i]["nome"]%>
+                    </td>
+                    <td>
+                        <%= contas[i]["numeroparcela"]%>
+                    </td>
+                    <td>
+                        <%= contas[i]["valorparcela"]%>
+                    </td>
+                </tr>
+                <%  } %>
+        </tbody>
+    </table>
+</body>
+
+</html>

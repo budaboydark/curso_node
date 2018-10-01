@@ -1,9 +1,10 @@
 var mysql = require('mysql');
 module.exports = function() {
     return mysql.createConnection({
-        host: 'mysql.des.f1s.me',
-        user: 'des',
-        password: 'des',
-        database: 'f1s_multisom_20180723'
+        host: '127.0.0.1',
+        user: 'root',
+        password: 'root',
+        database: 'banco_teste',
+        port: '3310'
     })
 }

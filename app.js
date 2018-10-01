@@ -7,6 +7,7 @@ var client = axios.create()
 // client.defaults.headers.common["Authorization"] = token
 var rotaNoticias = require('./app/routes/noticias')(app)
 var rotaHome = require('./app/routes/home')(app)
+var rotaContas = require('./app/routes/contas')(app)
 var rotaForm = require('./app/routes/formulario_inclusao_noticia')(app)
 app.use(middleware)
 app.listen(3000, function() {
