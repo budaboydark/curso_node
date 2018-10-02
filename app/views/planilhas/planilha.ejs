@@ -2,24 +2,81 @@
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+            <a class="nav-link active" id="1-tab" data-toggle="tab" href="#1" role="tab" aria-controls="1" aria-selected="true">Janeiro</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+            <a class="nav-link" id="2-tab" data-toggle="tab" href="#2" role="tab" aria-controls="2" aria-selected="false">Fevereiro</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false">Messages</a>
+            <a class="nav-link" id="3-tab" data-toggle="tab" href="#3" role="tab" aria-controls="3" aria-selected="false">Março</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">Settings</a>
+            <a class="nav-link" id="4-tab" data-toggle="tab" href="#4" role="tab" aria-controls="4" aria-selected="false">Abril</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="5-tab" data-toggle="tab" href="#5" role="tab" aria-controls="5" aria-selected="false">Maio</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="6-tab" data-toggle="tab" href="#6" role="tab" aria-controls="6" aria-selected="false">Junho</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="7-tab" data-toggle="tab" href="#7" role="tab" aria-controls="7" aria-selected="false">Julho</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="8-tab" data-toggle="tab" href="#8" role="tab" aria-controls="8" aria-selected="false">Agosto</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="9-tab" data-toggle="tab" href="#9" role="tab" aria-controls="9" aria-selected="false">Setembro</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="10-tab" data-toggle="tab" href="#10" role="tab" aria-controls="10" aria-selected="false">Outubro</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="11-tab" data-toggle="tab" href="#11" role="tab" aria-controls="11" aria-selected="false">Novembro</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="12-tab" data-toggle="tab" href="#12" role="tab" aria-controls="12" aria-selected="false">Dezembro</a>
         </li>
     </ul>
 
     <!-- Tab panes -->
     <div class="tab-content">
-        <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">1</div>
-        <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">2</div>
-        <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">3</div>
-        <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">4</div>
+        <% for(var i=1; i<= 12;i++){ 
+            if(i == 1){
+                var ac = "active"
+            }else{
+                var ac = ""
+            }
+            %>
+            <div class="tab-pane <%- ac %>" id="<%- i %>" role="tabpanel" aria-labelledby="<%- i %>-tab">
+                <%- dados[i].mes %>
+                    <% if(dados[i].contas){%>
+                        <div class="container mt-3">
+                            <div class="row bg-secondary">
+                                <div class="col-sm">id</div>
+                                <div class="col-sm">conta</div>
+                                <div class="col-sm">parcela</div>
+                                <div class="col-sm">valor</div>
+                            </div>
+                            <% for(var i=0; i < contas.length;i++){ %>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <%= contas[i]["id"]%>
+                                    </div>
+                                    <div class="col-sm">
+                                        <%= contas[i]["nome"]%>
+                                    </div>
+                                    <div class="col-sm">
+                                        <%= contas[i]["numeroparcela"]%>
+                                    </div>
+                                    <div class="col-sm">
+                                        <%= contas[i]["valorparcela"]%>
+                                    </div>
+                                </div>
+                                <%  } %>
+                        </div>
+                        <% } %>
+            </div>
+            <% } %>
     </div>
 </div>
