@@ -9,6 +9,7 @@ var rotaNoticias = require('./app/routes/noticias')(app)
 var rotaHome = require('./app/routes/home')(app)
 var rotaContas = require('./app/routes/contas')(app)
 var rotaForm = require('./app/routes/formulario_inclusao_noticia')(app)
+var rotaPlanilhas = require('./app/routes/planilhas')(app)
 app.use(middleware)
 app.listen(3000, function() {
     console.log('Servidor ON')
