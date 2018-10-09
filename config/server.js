@@ -1,10 +1,10 @@
 var express = require('express')
 var app = express()
 var expressLayouts = require('express-ejs-layouts')
-var bodyParser = require('body-parser')
+    // var bodyParser = require('body-parser')
 app.set('view engine', 'ejs')
 app.set('views', './app/views')
 app.use(expressLayouts)
-app.use(bodyParser.urlencoded())
+    // app.use(bodyParser.urlencoded())
 app.use(express.static('public'))
 module.exports = app
