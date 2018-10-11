@@ -38,46 +38,4 @@
             <a class="nav-link" id="12-tab" data-toggle="tab" href="#12" role="tab" aria-controls="12" aria-selected="false">Dezembro</a>
         </li>
     </ul>
-
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <% for(var i=1; i<= 12;i++){ 
-            if(i == 1){
-                var ac = "active"
-            }else{
-                var ac = ""
-            }
-            %>
-            <div class="tab-pane <%- ac %>" id="<%- i %>" role="tabpanel" aria-labelledby="<%- i %>-tab">
-                <%- dados[i].mes %>
-                    <% if(dados[i].contas){%>
-                        <div class="container mt-3">
-                            <div class="row bg-secondary">
-                                <div class="col-sm">id</div>
-                                <div class="col-sm">conta</div>
-                                <div class="col-sm">parcela</div>
-                                <div class="col-sm">valor</div>
-                            </div>
-                            <% for(var i=0; i < contas.length;i++){ %>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <%= contas[i]["id"]%>
-                                    </div>
-                                    <div class="col-sm">
-                                        <%= contas[i]["nome"]%>
-                                    </div>
-                                    <div class="col-sm">
-                                        <%= contas[i]["numeroparcela"]%>
-                                    </div>
-                                    <div class="col-sm">
-                                        <%= contas[i]["valorparcela"]%>
-                                    </div>
-                                </div>
-                                <%  } %>
-                        </div>
-                        <% } %>
-            </div>
-            <% } %>
-    </div>
-	<% include ../elementos/lista_contas %>
 </div>

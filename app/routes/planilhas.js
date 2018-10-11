@@ -1,24 +1,5 @@
-//var dbConnection = require('../../config/dbConnection')
-var select = require('../../modulos/mod_teste')
 module.exports = function(app) {
-    // var connection = dbConnection()
-    app.get('/planilhas/:id?', function(req, res) {
-        // console.log(req.params.id)
-        // var id = req.params.id
-
-        var contas2 = function() {
-            select("SELECT * FROM contas_pagar", function(result) {
-                return result
-            })
-
-        }
-        console.log(contas2())
-        contasParcial = [{
-            id: 1,
-            numeroparcela: 2,
-            valorparcela: 2.34,
-            nome: "teste"
-        }]
+    app.get('/planilhas/:id?', (req, res) => {
         var data = {
             dados: {
                 [1]: { mes: "janeiro" },
@@ -33,9 +14,9 @@ module.exports = function(app) {
                 [10]: { mes: "outubro" },
                 [11]: { mes: "novembro" },
                 [12]: { mes: "dezembro" }
-            },
-            contas: contasParcial
+            }
         }
         res.render('planilhas/planilha', data)
     })
+
 }

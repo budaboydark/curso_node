@@ -1,5 +1,6 @@
 var mysql = require('mysql');
-module.exports = function() {
+var connMysql = function() {
+    console.log("Conexao com bd foi estabelecida")
     return mysql.createConnection({
         host: '127.0.0.1',
         user: 'root',
@@ -7,4 +8,7 @@ module.exports = function() {
         database: 'banco_teste',
         port: '3310'
     })
+}
+module.exports = function() {
+    return connMysql
 }
