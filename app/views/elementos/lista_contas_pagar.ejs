@@ -1,0 +1,28 @@
+<div class="container mt-3">
+    <div class="row bg-secondary">
+        <div class="col-sm">Id</div>
+        <div class="col-sm">Conta</div>
+        <div class="col-sm">Número parcela</div>
+        <div class="col-sm">Parcela</div>
+        <div class="col-sm">Status</div>
+    </div>
+    <% for(var i=0; i < contas.length;i++){ %>
+        <div class="row">
+            <div class="col-sm">
+                <%= contas[i]["id"]%>
+            </div>
+            <div class="col-sm">
+                <%= contas[i]["nome"]%>
+            </div>
+            <div class="col-sm">
+                <%= contas[i]["numeroparcela"]%>
+            </div>
+            <div class="col-sm">
+                <%= contas[i]["valorparcela"]%>
+            </div>
+            <div class="col-sm">
+                <%= contas[i]["status"]%>
+            </div>
+        </div>
+        <%  } %>
+</div>

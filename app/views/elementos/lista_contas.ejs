@@ -1,9 +1,10 @@
 <div class="container mt-3">
     <div class="row bg-secondary">
-        <div class="col-sm">id</div>
-        <div class="col-sm">conta</div>
-        <div class="col-sm">parcela</div>
-        <div class="col-sm">valor</div>
+        <div class="col-sm">Id</div>
+        <div class="col-sm">Conta</div>
+        <div class="col-sm">Qtd_parcela</div>
+        <div class="col-sm">Valor</div>
+        <div class="col-sm">Tipo</div>
     </div>
     <% for(var i=0; i < contas.length;i++){ %>
         <div class="row">
@@ -11,13 +12,16 @@
                 <%= contas[i]["id"]%>
             </div>
             <div class="col-sm">
-                <%= contas[i]["nome"]%>
+                <%= contas[i]["conta"]%>
             </div>
             <div class="col-sm">
-                <%= contas[i]["numeroparcela"]%>
+                <%= contas[i]["qtd_parcelas"]%>
             </div>
             <div class="col-sm">
-                <%= contas[i]["valorparcela"]%>
+                <%= contas[i]["valor"]%>
+            </div>
+            <div class="col-sm">
+                <%= contas[i]["tipo"]%>
             </div>
         </div>
         <%  } %>
