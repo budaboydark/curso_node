@@ -64,8 +64,10 @@ module.exports = function(app) {
         var contasModel = app.app.models.contasModel
         var connection = app.config.dbConnection();
         if(params.tipo == 'pagar'){
+            var format = require('date-format')
+            var numeral = require('numeral')
             contasModel.getContaPagar(params.id, connection, function(erro, result) {
-                res.render('contas/contas_pagar', { contas: result })
+                res.render('contas/contas_pagar', { contas: result, format: format, numeral: numeral })
             })
         }else if(params.tipo == 'receber'){
             contasModel.getContaReceber(params.id, connection, function(erro, result) {

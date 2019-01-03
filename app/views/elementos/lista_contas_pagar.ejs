@@ -12,6 +12,12 @@
     <% for(var i=0; i < contas.length;i++){ 
         var id = contas[i]["id"]
         var status = contas[i]["status"]
+        var valor = "R$ "+contas[i]["valorparcela"].toFixed(2).replace(".",",")
+        var valorpago = 0.00
+        if(contas[i]["valorpago"]){
+            valorpago = "R$ "+contas[i]["valorpago"].toFixed(2).replace(".",",")
+        }
+        var vencimento = format.asString('dd/MM/yyyy',contas[i]["vencimento"])
     %>
         <div class="row">
             <div class="col-sm">
@@ -24,13 +30,13 @@
                 <%= contas[i]["numeroparcela"]%>
             </div>
             <div class="col-sm">
-                <%= contas[i]["valorparcela"]%>
+                <%= valor %>
             </div>
             <div class="col-sm">
-                <%= contas[i]["vencimento"]%>
+                <%= vencimento %>
             </div>
             <div class="col-sm">
-                <%= contas[i]["valorpago"]%>
+                <%= valorpago %>
             </div>
             <div class="col-sm">
                 <%= contas[i]["status"]%>
@@ -39,7 +45,7 @@
                 <% if (status == 'N') { %>
                     <a href="/conta/atualizar/pagar/<%- id %>">pagar</a>
                     <% } else { %>
-                        <label>pago</label>
+                        Pago
                         <% } %>
             </div>
         </div>
