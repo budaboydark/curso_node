@@ -6,7 +6,11 @@
         <div class="col-sm">Valor</div>
         <div class="col-sm">Tipo</div>
     </div>
-    <% for(var i=0; i < contas.length;i++){ %>
+    <% for(var i=0; i < contas.length;i++){ 
+        var id = contas[i]["id"]
+        var tipo = contas[i]["tipo"]
+        
+        %>
         <div class="row">
             <div class="col-sm">
                 <%= contas[i]["id"]%>
@@ -18,10 +22,12 @@
                 <%= contas[i]["qtd_parcelas"]%>
             </div>
             <div class="col-sm">
-                <%= contas[i]["valor"]%>
+                <%= (contas[i]["qtd_parcelas"] * contas[i]["valor"]) %>
             </div>
             <div class="col-sm">
-                <%= contas[i]["tipo"]%>
+                <a href="/contas/<%- id %>/<%- tipo %>">
+                    <%= tipo%>
+                </a>
             </div>
         </div>
         <%  } %>

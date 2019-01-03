@@ -1,16 +1,19 @@
 <h1>Adicionar conta</h1>
+<% if (message) { %>
+    <h3><%= message %></h3>
+<% } %>
 <form action="/contas/gravar" method="POST">
     <div class="form-group">
         <label>Nome</label>
-        <input type="text" name="nome" />
+        <input type="text" name="conta" />
     </div>
     <div class="form-group">
-        <label>Valor</label>
+        <label>Valor Parcela</label>
         <input type="text" name="valor" />
     </div>
     <div class="form-group">
         <label>Qtd Parcelas</label>
-        <input type="text" name="qtdParcelas" />
+        <input type="text" name="qtd_parcelas" />
     </div>
     <div class="input-group mb-4">
             <div class="input-group-prepend">

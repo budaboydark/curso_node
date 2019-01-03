@@ -4,12 +4,18 @@
         <div class="col-sm">Conta</div>
         <div class="col-sm">Número parcela</div>
         <div class="col-sm">Parcela</div>
+        <div class="col-sm">vencimento</div>
+        <div class="col-sm">valorPago</div>
         <div class="col-sm">Status</div>
+        <div class="col-sm">atividade</div>
     </div>
-    <% for(var i=0; i < contas.length;i++){ %>
+    <% for(var i=0; i < contas.length;i++){ 
+        var id = contas[i]["id"]
+        var status = contas[i]["status"]
+    %>
         <div class="row">
             <div class="col-sm">
-                <%= contas[i]["id"]%>
+                <%= id %>
             </div>
             <div class="col-sm">
                 <%= contas[i]["nome"]%>
@@ -21,7 +27,20 @@
                 <%= contas[i]["valorparcela"]%>
             </div>
             <div class="col-sm">
+                <%= contas[i]["vencimento"]%>
+            </div>
+            <div class="col-sm">
+                <%= contas[i]["valorpago"]%>
+            </div>
+            <div class="col-sm">
                 <%= contas[i]["status"]%>
+            </div>
+            <div class="col-sm">
+                <% if (status == 'N') { %>
+                    <a href="/conta/atualizar/pagar/<%- id %>">pagar</a>
+                    <% } else { %>
+                        <label>pago</label>
+                        <% } %>
             </div>
         </div>
         <%  } %>

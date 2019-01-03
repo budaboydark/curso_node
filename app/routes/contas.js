@@ -1,5 +1,55 @@
-// var dbConnection = require('../../config/dbConnection')
 module.exports = function(app) {
+
+    app.post('/contas_pagar/atualizar/:id', function(req,res){
+        var contasModel = app.app.models.contasModel
+        var connection = app.config.dbConnection();
+        var post = req.body
+        post.id = req.params.id
+        post.status = 'S'
+        
+        contasModel.updateContaPagar(post,connection,function(erro,result){
+            if(erro){
+                console.log(erro)
+                res.render('admin/form_update_conta_pagar', { message: 'Erro ao inserir dados',id : post.id })
+            }else{
+                contasModel.getContasPagar(post.id, connection,function(erro, result) {                                                            
+                    res.redirect('/contas/'+result[0].idcontas+'/pagar')
+                })                
+                
+            }                           
+        })
+    })
+
+    app.post('/contas/gravar', function(req,res){
+        var contasModel = app.app.models.contasModel
+        var connection = app.config.dbConnection();
+        var post = req.body        
+
+        contasModel.insertConta(post,connection, function(erro, result) {
+            if(req.body.tipo == 'pagar'){
+                var id = result.insertId
+                var parc = req.body.qtd_parcelas
+                dados = {
+                    nome: post.conta,
+                    valorparcela : post.valor,
+                    status: 'N',
+                    idcontas: id
+                }
+                for(var i=1;i <= parc;i++){
+                    dados.numeroparcela = i
+                    contasModel.insertContasPagar(dados,connection,function(erro,result){
+                        console.log(result)
+                    })
+                }
+            }
+            if(erro){
+                console.log(erro)
+                res.render('admin/form_add_conta', { message: 'Erro ao inserir dados' })
+            }else{
+                res.render('admin/form_add_conta', { message: 'Dados inseridos com sucesso' })
+            }                           
+        })
+    })
 
     app.get('/contas', function(req, res) {
         var contasModel = app.app.models.contasModel
