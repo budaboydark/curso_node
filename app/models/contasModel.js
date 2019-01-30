@@ -21,6 +21,11 @@ module.exports = function() {
         connection.query("SELECT * FROM contas_pagar WHERE idcontas = " + idConta, callback)
     }
 
+    this.getContasMes = (ano,connection,callback) => {
+        connection.query("SELECT valorparcela as parcela,MONTH(vencimento) as vencimento FROM contas_pagar WHERE YEAR(vencimento) = '"+ano+"' ORDER BY MONTH(vencimento) ASC;",callback)
+    }
+
+
     this.getContasPagar = (id, connection, callback) => {
         connection.query("SELECT * FROM contas_pagar WHERE id = " + id, callback)
     } 
