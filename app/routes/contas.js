@@ -20,6 +20,25 @@ module.exports = function(app) {
         })
     })
 
+    app.post('/contas_pagar/atualizar/v/:id', function(req,res){
+        var contasModel = app.app.models.contasModel
+        var connection = app.config.dbConnection();
+        var post = req.body
+        post.id = req.params.id
+        post.status = 'N'
+        
+        contasModel.updateContaVencimento(post,connection,function(erro,result){
+            if(erro){
+                console.log(erro)
+                res.render('admin/form_update_vencimento_conta_pagar', { message: 'Erro ao inserir dados',id : post.id })
+            }else{
+                contasModel.getContasPagar(post.id, connection,function(erro, result) {                                                            
+                    res.redirect('/contas/'+result[0].idcontas+'/pagar')
+                })                
+                
+            }                           
+        })
+    })
     app.post('/contas/gravar', function(req,res){
         var contasModel = app.app.models.contasModel
         var connection = app.config.dbConnection();

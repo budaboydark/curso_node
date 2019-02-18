@@ -1,0 +1,13 @@
+<h1>Atualizar conta</h1>
+<% if (message) { %>
+    <h3><%= message %></h3>
+<% } %>
+<form action="/contas_pagar/atualizar/v/<%- id %>" method="POST">
+    <div class="form-group">
+        <label>Vencimento</label>
+        <input type="text" name="vencimento" />
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="gravar">
+    </div>
+</form>

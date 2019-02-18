@@ -41,12 +41,43 @@
 </div>
 <div class="tab-content" id="nav-tabContent">
     <% 
-        var j = 1;        
+        var j = 1;
+        var active = "active show"        
         for(var i=0; i < dados.length;i++){
-            var valor = "R$ "+dados[i].valor.toFixed(2).replace(".",",")              
+            var valor = "R$ "+dados[i].valor.toFixed(2).replace(".",",")
+            var contas = dados[i].desc
+            var st = false;
+            (j == 1)?active = "active show":active = ""
+
     %>            
-        <div class="tab-pane fade" id="<%= j %>" role="tabpanel" aria-labelledby="<%= j%>-tab">
-            Valor total Mês <%= valor %>
+        <div class="tab-pane fade <%= active %>" id="<%= j %>" role="tabpanel" aria-labelledby="<%= j%>-tab">
+            <div>
+                <table class="table table-striped">
+                <thead>
+                    <th scope="col">Conta</th>
+                    <th scope="col">Valor</th>
+                </thead>
+                <tbody>                    
+                    <% for(var c=0; c < contas.length;c++){  %>
+                        <% (contas[c].status == 'S')? st = true:false%>
+                       <tr>
+                           <td><%= contas[c].nome %></td>
+                           <td><%= "R$ "+contas[c].parcela.toFixed(2).replace(".",",") %></td>
+                       </tr>                         
+                    <% } %>
+                </tbody>
+                <tfoot>
+                    <%
+                    var color = "white";
+                     (st)?color = "green":color = "#EC7063" 
+                     %>
+                    <tr style="background-color:<%= color %>" >
+                        <td>Valor total Mês</td>
+                        <td><%= valor %></td>
+                    </tr>
+                </tfoot>
+                </table>
+            </div>
         </div>
     <%
         j++;
