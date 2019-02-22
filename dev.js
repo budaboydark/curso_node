@@ -8,6 +8,5 @@ var middleware = require('./config/middleware');
 // var rotaPlanilhas = require('./app/routes/planilhas')(app)
 app.use(middleware)
 app.listen(3020, function() {
-	console.log('PORT 3020')
-	console.log('Servidor ON')
+    console.log('Servidor ON')
 })

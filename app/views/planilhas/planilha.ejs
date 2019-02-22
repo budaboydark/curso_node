@@ -44,7 +44,7 @@
         var j = 1;
         var active = "active show"        
         for(var i=0; i < dados.length;i++){
-            var valor = "R$ "+dados[i].valor.toFixed(2).replace(".",",")
+	    var valor = "R$ "+dados[i].valor.toFixed(2).replace(".",",")
             var contas = dados[i].desc
             var st = false;
             (j == 1)?active = "active show":active = ""

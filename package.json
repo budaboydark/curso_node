@@ -1,7 +1,7 @@
 {
-    "name": "portal_noticias",
+    "name": "contabilidade",
     "version": "1.0.0",
-    "description": "Site de noticias",
+    "description": "Sistema de contas",
     "main": "noticias.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
@@ -15,6 +15,7 @@
         "bootstrap": "^4.1.3",
         "consign": "^0.1.6",
         "date-format": "^2.0.0",
+        "dotenv": "^6.2.0",
         "ejs": "^2.6.1",
         "express": "^4.16.3",
         "express-ejs-layouts": "^2.5.0",

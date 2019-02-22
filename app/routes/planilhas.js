@@ -8,7 +8,6 @@ module.exports = function(app) {
         contasModel.getContasMes(data,connection, function(erro, result) {
             var mensal = []
             var contas = []
-
             result.forEach(element => {
                 var v = {
                     nome : element.nome,
@@ -24,7 +23,6 @@ module.exports = function(app) {
                     contas[element.vencimento] = [element]
                 }
             });
-
             var numeral = require('numeral')
             var data = {
                 dados: [
