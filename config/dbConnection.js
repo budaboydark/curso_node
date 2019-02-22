@@ -29,8 +29,6 @@ var conn = params.local;
 		conn = params.local;
 	}
 
-console.log(conn);
-
 var connMysql = mysql.createConnection(conn)
 
 	connMysql.connect(function(err){
