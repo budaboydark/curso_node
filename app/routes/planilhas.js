@@ -8,6 +8,21 @@ module.exports = function(app) {
         contasModel.getContasMes(data,connection, function(erro, result) {
             var mensal = []
             var contas = []
+		var meses = []
+		meses[1] = 'janeiro';
+		meses[2] = 'fevereiro';
+		meses[3] = 'março';
+		meses[4] = 'abril';
+		meses[5] = 'maio';
+		meses[6] = 'junho';
+		meses[7] = 'julho';
+		meses[8] = 'agosto';
+		meses[9] = 'setembro';
+		meses[10] = 'outubro';
+		meses[11] = 'novembro';
+		meses[12] = 'dezembro';
+		
+		var mes = [];
             result.forEach(element => {
                 var v = {
                     nome : element.nome,
@@ -18,27 +33,27 @@ module.exports = function(app) {
                     var m = mensal[element.vencimento]
                     mensal[element.vencimento] = (m+element.parcela)
                     contas[element.vencimento].push(element)
+			mes[element.vencimento] = element.vencimento
                 }else{                
                     mensal[element.vencimento] = element.parcela
                     contas[element.vencimento] = [element]
+			mes[element.vencimento] = element.vencimento
                 }
             });
+		var dataEl = [];
+        mes.forEach(elements => {
+            var idel = elements;
+            dataEl.push(
+                { 
+                    mes: meses[elements],
+                    valor:mensal[elements],
+                    desc: contas[elements],
+                    id : idel
+                })
+		});
             var numeral = require('numeral')
             var data = {
-                dados: [
-                    { mes: "janeiro",valor: mensal[1],desc: contas[1] },
-                    { mes: "fevereiro",valor: mensal[2],desc: contas[2] },
-                    { mes: "março",valor: mensal[3],desc: contas[3] },
-                    { mes: "abril",valor: mensal[4],desc: contas[4] },
-                    { mes: "maio",valor: mensal[5],desc: contas[5] },
-                    { mes: "junho",valor: mensal[6],desc: contas[6] },
-                    { mes: "julho",valor: mensal[7],desc: contas[7] },
-                    { mes: "agosto",valor: mensal[8],desc: contas[8] },
-                    { mes: "setembro" ,valor: mensal[9],desc: contas[9]},
-                    { mes: "outubro" ,valor: mensal[10],desc: contas[10]},
-                    { mes: "novembro" ,valor: mensal[11],desc: (contas[11])?contas[11]:[]},
-                    { mes: "dezembro",valor: (mensal[12])?mensal[12]: 0,desc: (contas[12])?contas[12]:[] }
-                ]
+                dados: dataEl
             }
             res.render('planilhas/planilha', { dados: data.dados, numeral:numeral })            
         })

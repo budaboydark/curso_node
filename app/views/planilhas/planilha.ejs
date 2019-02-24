@@ -1,56 +1,32 @@
 <div class="container">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="1-tab" data-toggle="tab" href="#1" role="tab" aria-controls="1" aria-selected="true">Janeiro</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="2-tab" data-toggle="tab" href="#2" role="tab" aria-controls="2" aria-selected="false">Fevereiro</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="3-tab" data-toggle="tab" href="#3" role="tab" aria-controls="3" aria-selected="false">Março</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="4-tab" data-toggle="tab" href="#4" role="tab" aria-controls="4" aria-selected="false">Abril</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="5-tab" data-toggle="tab" href="#5" role="tab" aria-controls="5" aria-selected="false">Maio</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="6-tab" data-toggle="tab" href="#6" role="tab" aria-controls="6" aria-selected="false">Junho</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="7-tab" data-toggle="tab" href="#7" role="tab" aria-controls="7" aria-selected="false">Julho</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="8-tab" data-toggle="tab" href="#8" role="tab" aria-controls="8" aria-selected="false">Agosto</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="9-tab" data-toggle="tab" href="#9" role="tab" aria-controls="9" aria-selected="false">Setembro</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="10-tab" data-toggle="tab" href="#10" role="tab" aria-controls="10" aria-selected="false">Outubro</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="11-tab" data-toggle="tab" href="#11" role="tab" aria-controls="11" aria-selected="false">Novembro</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="12-tab" data-toggle="tab" href="#12" role="tab" aria-controls="12" aria-selected="false">Dezembro</a>
-        </li>
+        <% 
+        var active2 = '';
+        for(var tab=0; tab < dados.length;tab++){   
+        %>
+            <% var id_tab = dados[tab].id %>
+            <% var mes_tab = dados[tab].mes %>
+            <% 
+            (tab == 0)?active2 = 'active':active2= ''
+            %>
+            <li class="nav-item">
+                    <a class="nav-link <%= active%>" id="<%= id_tab %>-tab" data-toggle="tab" href="#<%= id_tab%>" role="tab" aria-controls="1" aria-selected="true"><%= mes_tab%></a>
+            </li>
+        <% } %>
     </ul>
 </div>
 <div class="tab-content" id="nav-tabContent">
     <% 
-        var j = 1;
         var active = "active show"        
         for(var i=0; i < dados.length;i++){
 	    var valor = "R$ "+dados[i].valor.toFixed(2).replace(".",",")
             var contas = dados[i].desc
             var st = false;
-            (j == 1)?active = "active show":active = ""
-
+            var id = dados[i].id;
+            (i == 0)?active = "active show":active = ""
     %>            
-        <div class="tab-pane fade <%= active %>" id="<%= j %>" role="tabpanel" aria-labelledby="<%= j%>-tab">
+        <div class="tab-pane fade <%= active %>" id="<%= id %>" role="tabpanel" aria-labelledby="<%= id %>-tab">
             <div>
                 <table class="table table-striped">
                 <thead>
@@ -80,7 +56,7 @@
             </div>
         </div>
     <%
-        j++;
+    
         }
     %>
 </div>
