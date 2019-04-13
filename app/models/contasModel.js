@@ -18,7 +18,7 @@ module.exports = function() {
     }
 
     this.getContas = (connection, callback) => {
-        connection.query("SELECT * FROM contas", callback)
+        connection.query("SELECT c.* FROM contas c INNER JOIN contas_pagar cp ON(cp.idcontas = c.id) WHERE cp.status = 'N' GROUP BY c.id", callback)
     }
 
     this.getContaPagar = (idConta, connection, callback) => { 
