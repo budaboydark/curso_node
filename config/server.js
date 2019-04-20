@@ -7,20 +7,18 @@ var expressValidator = require('express-validator')
 
 app.set('view engine', 'ejs')
 app.set('views', './app/views')
+app.set('layouts','./app/views/index')
 
 app.use(expressLayouts)
 app.use(bodyParser.urlencoded())
 app.use(bodyParser.json())
 app.use(expressValidator())
-app.use(express.static('public'))
-
-//var routes = require('./app/routes')
-
-//app.use(routes)
+app.use(express.static('skins/template1'))
 
 consign()
     .include('./app/routes')	
     .then('./config/dbConnection.js')
+    .then('./app/controllers')
     .then('./app/models')
     .into(app)
 

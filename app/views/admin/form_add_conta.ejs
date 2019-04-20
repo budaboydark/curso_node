@@ -2,18 +2,19 @@
 <% if (message) { %>
     <h3><%= message %></h3>
 <% } %>
-<form action="/contas/gravar" method="POST">
+<link href="/css/sb-admin-2.min.css" rel="stylesheet">
+<form class="user" action="/contas/gravar" method="POST">
     <div class="form-group">
         <label>Nome</label>
-        <input type="text" name="conta" />
+        <input type="text" class="form-control form-control-user" name="conta" />
     </div>
     <div class="form-group">
         <label>Valor Parcela</label>
-        <input type="text" name="valor" />
+        <input type="text" class="form-control form-control-user" name="valor" />
     </div>
     <div class="form-group">
         <label>Qtd Parcelas</label>
-        <input type="text" name="qtd_parcelas" />
+        <input type="text" class="form-control form-control-user" name="qtd_parcelas" />
     </div>
     <div class="input-group mb-4">
             <div class="input-group-prepend">
@@ -25,6 +26,6 @@
         </select>
     </div>
     <div class="form-group">
-        <input type="submit" class="btn btn-primary" value="gravar">
+        <input type="submit" class="btn btn-primary btn-user btn-block" value="gravar">
     </div>
 </form>

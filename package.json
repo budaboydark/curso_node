@@ -24,6 +24,10 @@
         "mysql": "github:mysqljs/mysql",
         "nodemon": "^1.18.9",
         "numeral": "^2.0.6",
-        "popper.js": "^1.14.4"
+        "popper.js": "^1.14.4",
+        "jquery.easing": "^1.4.1",
+        "datatables.net-bs4": "1.10.19",
+        "chart.js": "2.8.0",
+        "@fortawesome/fontawesome-free": "5.8.1"
     }
 }

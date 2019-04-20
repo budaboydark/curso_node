@@ -1,7 +1,7 @@
 module.exports = function(app) {
 
     app.post('/contas_pagar/atualizar/:id', function(req,res){
-        var contasModel = app.app.models.contasModel
+        var contasModel = app.app.models.contas
         var connection = app.config.dbConnection();
         var post = req.body
         post.id = req.params.id
@@ -21,7 +21,7 @@ module.exports = function(app) {
     })
 
     app.post('/contas_pagar/atualizar/v/:id', function(req,res){
-        var contasModel = app.app.models.contasModel
+        var contasModel = app.app.models.contas
         var connection = app.config.dbConnection();
         var post = req.body
         post.id = req.params.id
@@ -40,7 +40,7 @@ module.exports = function(app) {
         })
     })
     app.post('/contas/gravar', function(req,res){
-        var contasModel = app.app.models.contasModel
+        var contasModel = app.app.models.contas
         var connection = app.config.dbConnection();
         var post = req.body        
 
@@ -71,7 +71,7 @@ module.exports = function(app) {
     })
 
     app.get('/contas', function(req, res) {
-        var contasModel = app.app.models.contasModel
+        var contasModel = app.app.models.contas
         var connection = app.config.dbConnection();
         contasModel.getContas(connection, function(erro, result) {            
             res.render('contas/contas', { contas: result })
@@ -80,7 +80,7 @@ module.exports = function(app) {
 
     app.get('/contas/:id/:tipo', function(req, res) {
         var params = req.params;
-        var contasModel = app.app.models.contasModel
+        var contasModel = app.app.models.contas
         var connection = app.config.dbConnection();
         if(params.tipo == 'pagar'){
             var format = require('date-format')

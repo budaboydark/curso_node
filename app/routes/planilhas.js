@@ -1,7 +1,7 @@
 module.exports = function(app) {
     app.get('/planilhas/:id?', (req, res) => {
 
-        var contasModel = app.app.models.contasModel
+        var contasModel = app.app.models.contas
         var connection = app.config.dbConnection();
         var data = req.params.id;
         (data)?data = req.params.id:data = new Date().getFullYear()  
