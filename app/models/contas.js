@@ -38,5 +38,9 @@ module.exports = function() {
         connection.query("SELECT * FROM contas_receber WHERE id = " + idConta, callback)
     }
 
+    this.getContaTotalAno = (connection, callback) => {
+        connection.query("SELECT YEAR(vencimento) as ano,SUM(valorpago) as total FROM contas_pagar WHERE vencimento IS NOT NULL AND valorpago IS NOT NULL  GROUP BY YEAR(vencimento)", callback)
+    }
+
     return this
 }
