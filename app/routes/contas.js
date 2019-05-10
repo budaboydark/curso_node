@@ -6,6 +6,10 @@ module.exports = function(app) {
         var post = req.body
         post.id = req.params.id
         post.status = 'S'
+        var date = post.vencimento.split('/')
+        post.vencimento = date[2]+'-'+date[1]+'-'+date[0]
+        post.valorpago = post.valorpago.replace(',','.');
+        post.valorpago = post.valorpago.replace('.','');
         
         contasModel.updateContaPagar(post,connection,function(erro,result){
             if(erro){
@@ -26,6 +30,8 @@ module.exports = function(app) {
         var post = req.body
         post.id = req.params.id
         post.status = 'N'
+        var date = post.vencimento.split('/')
+        post.vencimento = date[2]+'-'+date[1]+'-'+date[0]
         
         contasModel.updateContaVencimento(post,connection,function(erro,result){
             if(erro){
@@ -42,7 +48,9 @@ module.exports = function(app) {
     app.post('/contas/gravar', function(req,res){
         var contasModel = app.app.models.contas
         var connection = app.config.dbConnection();
-        var post = req.body        
+        var post = req.body
+        post.valor = post.valor.replace(',','.');
+        post.valor = post.valor.replace('.','');
 
         contasModel.insertConta(post,connection, function(erro, result) {
             if(req.body.tipo == 'pagar'){
