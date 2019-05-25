@@ -14,8 +14,6 @@ module.exports = function(app) {
         var post = req.body
         post.id = req.params.id
         post.status = 'S'
-        var date = post.vencimento.split('/')
-        post.vencimento = date[2]+'-'+date[1]+'-'+date[0]
         post.valorpago = post.valorpago.replace('.','');
         post.valorpago = post.valorpago.replace(',','.');
         
@@ -37,10 +35,7 @@ module.exports = function(app) {
         var connection = app.config.dbConnection();
         var post = req.body
         post.id = req.params.id
-        post.status = 'N'
-        var date = post.vencimento.split('/')
-        post.vencimento = date[2]+'-'+date[1]+'-'+date[0]
-        
+        post.status = 'N'        
         contasModel.updateContaVencimento(post,connection,function(erro,result){
             if(erro){
                 console.log(erro)
@@ -73,7 +68,7 @@ module.exports = function(app) {
                 for(var i=1;i <= parc;i++){
                     dados.numeroparcela = i
                     contasModel.insertContasPagar(dados,connection,function(erro,result){
-                        console.log(result)
+                        
                     })
                 }
             }
