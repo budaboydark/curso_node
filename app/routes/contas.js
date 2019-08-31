@@ -53,7 +53,7 @@ module.exports = function(app) {
         var connection = app.config.dbConnection();
         var post = req.body
         post.valor = post.valor.replace('.','');
-   	post.valor = post.valor.replace(',','.');
+   	    post.valor = post.valor.replace(',','.');
 
         contasModel.insertConta(post,connection, function(erro, result) {
             if(req.body.tipo == 'pagar'){

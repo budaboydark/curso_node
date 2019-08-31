@@ -23,24 +23,24 @@ module.exports = function(app) {
 		meses[12] = 'dezembro';
 		
 		var mes = [];
-            result.forEach(element => {
-                var v = {
-                    nome : element.nome,
-                    parcela : element.parcela
-                }
+        result.forEach(element => {
+            var v = {
+                nome : element.nome,
+                parcela : element.parcela
+            }
+            if(mensal[element.vencimento]){
+                var m = mensal[element.vencimento]
+                mensal[element.vencimento] = (m+element.parcela)
+                contas[element.vencimento].push(element)
+                mes[element.vencimento] = element.vencimento
+            }else{                
+                mensal[element.vencimento] = element.parcela
+                contas[element.vencimento] = [element]
+                mes[element.vencimento] = element.vencimento
+            }
+        });
 
-                if(mensal[element.vencimento]){
-                    var m = mensal[element.vencimento]
-                    mensal[element.vencimento] = (m+element.parcela)
-                    contas[element.vencimento].push(element)
-			mes[element.vencimento] = element.vencimento
-                }else{                
-                    mensal[element.vencimento] = element.parcela
-                    contas[element.vencimento] = [element]
-			mes[element.vencimento] = element.vencimento
-                }
-            });
-		var dataEl = [];
+        var dataEl = [];
         mes.forEach(elements => {
             var idel = elements;
             dataEl.push(

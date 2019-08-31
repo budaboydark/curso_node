@@ -26,7 +26,7 @@ module.exports = function() {
     }
 
     this.getContasMes = (ano,connection,callback) => {
-        connection.query("SELECT valorparcela as parcela,MONTH(vencimento) as vencimento, nome, vencimento as data_venc,status FROM contas_pagar WHERE YEAR(vencimento) = '"+ano+"' ORDER BY MONTH(vencimento) ASC;",callback)
+        connection.query("SELECT valorparcela as parcela,MONTH(vencimento) as vencimento, nome, vencimento as data_venc,status, flag FROM contas_pagar WHERE YEAR(vencimento) = '"+ano+"' ORDER BY MONTH(vencimento) ASC;",callback)
     }
 
 

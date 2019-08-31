@@ -1,34 +1,73 @@
-<div class="container mt-3">
-    <div class="row bg-secondary">
-        <div class="col-sm">Id</div>
-        <div class="col-sm">Conta</div>
-        <div class="col-sm">Qtd_parcela</div>
-        <div class="col-sm">Valor</div>
-        <div class="col-sm">Tipo</div>
-    </div>
-    <% for(var i=0; i < contas.length;i++){ 
-        var id = contas[i]["id"]
-        var tipo = contas[i]["tipo"]
-        
-        %>
-        <div class="row">
-            <div class="col-sm">
-                <%= contas[i]["id"]%>
-            </div>
-            <div class="col-sm">
-                <%= contas[i]["conta"]%>
-            </div>
-            <div class="col-sm">
-                <%= contas[i]["qtd_parcelas"]%>
-            </div>
-            <div class="col-sm">
-                <%= (contas[i]["qtd_parcelas"] * contas[i]["valor"]) %>
-            </div>
-            <div class="col-sm">
-                <a href="/contas/<%- id %>/<%- tipo %>">
-                    <%= tipo%>
-                </a>
-            </div>
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Registro de Contas</h1>
+    <p class="mb-4">Informação sobre contas registradas a pagar.</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Contas a pagar</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Conta</th>
+                <th>Parcelas</th>
+                <th>Valor total</th>
+                <th>Tipo</th>
+                <th>Flag</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>Name</th>
+                <th>Conta</th>
+                <th>Parcelas</th>
+                <th>Valor total</th>
+                <th>Tipo</th>
+                <th>Flag</th>
+              </tr>
+            </tfoot>
+            <tbody>
+                <% for(var i=0; i < contas.length;i++){ 
+                    var id = contas[i]["id"]
+                    var tipo = contas[i]["tipo"]
+                %>
+                    <tr>
+                        <td>
+                            <%= contas[i]["id"]%>
+                        </td>
+                        <td>
+                            <%= contas[i]["conta"]%>
+                        </td>
+                        <td>
+                            <%= contas[i]["qtd_parcelas"]%>
+                        </td>
+                        <td>
+                            <%= (contas[i]["qtd_parcelas"] * contas[i]["valor"]) %>
+                        </td>
+                        <td>
+                            <a href="/contas/<%- id %>/<%- tipo %>">
+                                <%= tipo%>
+                            </a>
+                        </td>
+                        <td>
+                            <%= contas[i]["flag"]%>
+                        </td>
+
+                      </tr>
+                    <%  } %>
+            </tbody>
+          </table>
         </div>
-        <%  } %>
-</div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container-fluid -->

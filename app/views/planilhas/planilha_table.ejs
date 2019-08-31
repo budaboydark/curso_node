@@ -1,0 +1,60 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">Registro de Contas</h1>
+        <p class="mb-4">Informação sobre contas registradas a pagar.</p>
+    
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Contas a pagar</h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered dataTable-js" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                        <th>Conta</th>
+                        <th>Valor</th>
+                        <th></th>
+                        <th>Flag</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var c=0; c < contas.length;c++){  %>
+                        <% (contas[c].status == 'S')? st = true:false%>
+                        <% (contas[c].status == 'N')? valorPagar += contas[c].parcela : valorPagar = valorPagar  %>
+                        <% 
+                            
+                            (contas[c].status == 'S')? colorbg = "background-color:#C7ED99" : colorbg = ""
+                        %>
+
+                        <tr style="<%= colorbg %>">
+                            <td><%= contas[c].nome %></td>
+                            <td><%= "R$ "+contas[c].parcela.toFixed(2).replace(".",",") %></td>
+                            <td></td>
+                            <td><%= contas[c].flag %></td>
+                        </tr>                         
+                    <% } %>
+                </tbody>
+                <tfoot>
+                        <%
+                        var color = "white";
+                         (st)?color = "green":color = "#EC7063" 
+                         %>
+                        <tr style="background-color:<%= color %>" >
+                            <td>Valor total Mês</td>
+                            <td><%= valor %></td>
+                            <td style="background-color:#EC7063">Saldo a pagar Mês</td>
+                            <td style="background-color:#EC7063"><%= valorPagar.toFixed(2).replace(".",",") %></td>
+                        </tr>
+                    </tfoot>
+
+              </table>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+      <!-- /.container-fluid -->

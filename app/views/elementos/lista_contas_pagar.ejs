@@ -1,54 +1,86 @@
-<div class="container mt-3">
-    <div class="row bg-secondary">
-        <div class="col-sm">Id</div>
-        <div class="col-sm">Conta</div>
-        <div class="col-sm">Número parcela</div>
-        <div class="col-sm">Parcela</div>
-        <div class="col-sm">vencimento</div>
-        <div class="col-sm">valorPago</div>
-        <div class="col-sm">Status</div>
-        <div class="col-sm">atividade</div>
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Registro de Contas</h1>
+    <p class="mb-4">Informação sobre contas registradas a pagar.</p>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Contas a pagar</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Conta</th>
+                    <th>Número parcela</th>
+                    <th>Parcela</th>
+                    <th>vencimento</th>
+                    <th>valorPago</th>
+                    <th>Status</th>
+                    <th>atividade</th>
+                </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>Id</th>
+                <th>Conta</th>
+                <th>Número parcela</th>
+                <th>Parcela</th>
+                <th>vencimento</th>
+                <th>valorPago</th>
+                <th>Status</th>
+                <th>atividade</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                    <% for(var i=0; i < contas.length;i++){ 
+                        var id = contas[i]["id"]
+                        var status = contas[i]["status"]
+                        var valor = "R$ "+contas[i]["valorparcela"].toFixed(2).replace(".",",")
+                        var valorpago = 0.00
+                        if(contas[i]["valorpago"]){
+                            valorpago = "R$ "+contas[i]["valorpago"].toFixed(2).replace(".",",")
+                        }
+                        var vencimento = format.asString('dd/MM/yyyy',contas[i]["vencimento"])
+                    %>
+                        <tr>
+                            <td>
+                                <%= id %>
+                            </td>
+                            <td>
+                                <%= contas[i]["nome"]%>
+                            </td>
+                            <td>
+                                <%= contas[i]["numeroparcela"]%>
+                            </td>
+                            <td>
+                                <%= valor %>
+                            </td>
+                            <td>
+                                <%= vencimento %>
+                            </td>
+                            <td>
+                                <%= valorpago %>
+                            </td>
+                            <td>
+                                <%= contas[i]["status"]%>
+                            </td>
+                            <td>
+                                <% if (status == 'N') { %>
+                                    <a href="/conta/atualizar/pagar/<%- id %>">pagar</a>
+                                    <a href="/conta/atualizar/vencimento/<%- id %>">alterar_vencimento</a>
+                                    <% } else { %>
+                                        Pago
+                                        <% } %>
+                            </td>
+                        </tr>
+                        <%  } %>
+            </tbody>
+        </table>
+      </div>
     </div>
-    <% for(var i=0; i < contas.length;i++){ 
-        var id = contas[i]["id"]
-        var status = contas[i]["status"]
-        var valor = "R$ "+contas[i]["valorparcela"].toFixed(2).replace(".",",")
-        var valorpago = 0.00
-        if(contas[i]["valorpago"]){
-            valorpago = "R$ "+contas[i]["valorpago"].toFixed(2).replace(".",",")
-        }
-        var vencimento = format.asString('dd/MM/yyyy',contas[i]["vencimento"])
-    %>
-        <div class="row">
-            <div class="col-sm">
-                <%= id %>
-            </div>
-            <div class="col-sm">
-                <%= contas[i]["nome"]%>
-            </div>
-            <div class="col-sm">
-                <%= contas[i]["numeroparcela"]%>
-            </div>
-            <div class="col-sm">
-                <%= valor %>
-            </div>
-            <div class="col-sm">
-                <%= vencimento %>
-            </div>
-            <div class="col-sm">
-                <%= valorpago %>
-            </div>
-            <div class="col-sm">
-                <%= contas[i]["status"]%>
-            </div>
-            <div class="col-sm">
-                <% if (status == 'N') { %>
-                    <a href="/conta/atualizar/pagar/<%- id %>">pagar</a>
-                    <a href="/conta/atualizar/vencimento/<%- id %>">alterar_vencimento</a>
-                    <% } else { %>
-                        Pago
-                        <% } %>
-            </div>
-        </div>
-        <%  } %>
-</div>
+  </div>
+<!-- /.container-fluid -->
