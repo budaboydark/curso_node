@@ -42,8 +42,8 @@ module.exports = function() {
         connection.query("SELECT YEAR(vencimento) as ano,SUM(valorpago) as total FROM contas_pagar WHERE vencimento IS NOT NULL AND valorpago IS NOT NULL  GROUP BY YEAR(vencimento)", callback)
     }
 
-    this.getContaTotalResto = async (connection, callback) => {
-        await connection.query(" SELECT YEAR(vencimento) as ano, SUM(valorparcela) as total FROM contas_pagar WHERE vencimento IS NOT NULL AND YEAR(vencimento) = 2019 AND valorpago IS NULL GROUP BY YEAR(vencimento)",callback)
+    this.getContaTotalResto = async (ano, connection, callback) => {
+        await connection.query(" SELECT YEAR(vencimento) as ano, SUM(valorparcela) as total FROM contas_pagar WHERE vencimento IS NOT NULL AND YEAR(vencimento) = '"+ano+"' AND valorpago IS NULL GROUP BY YEAR(vencimento)",callback)
     }
 
     return this

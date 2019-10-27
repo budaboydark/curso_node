@@ -63,7 +63,8 @@ module.exports = function(app) {
                     nome: post.conta,
                     valorparcela : post.valor,
                     status: 'N',
-                    idcontas: id
+                    idcontas: id,
+                    flag: req.body.flag
                 }
                 for(var i=1;i <= parc;i++){
                     dados.numeroparcela = i
