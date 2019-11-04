@@ -1,2 +1,2 @@
-# curso_node
-curso de nodejs e mogoDB
+# SContabil
+Sistema financeiro particular
