@@ -107,4 +107,21 @@ module.exports = function(app) {
         }
     })
 
+    app.get('/payment-all-month/:m/:y',function (req, res){
+
+        var params = req.params
+        var contasModel = app.app.models.contas
+        var connection = app.config.dbConnection()
+
+        contasModel.updateContasPagarPaymentAllMonth(params,connection,function(erro,result){
+            if(erro){
+                console.log(erro)
+                res.status(500).send(erro)
+            }else{
+                res.status(200).send('atualizado')
+            }
+        })
+        return
+    })
+
 }

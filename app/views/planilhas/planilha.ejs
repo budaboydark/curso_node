@@ -30,46 +30,8 @@
             var colorbg = "";
             (i == 0)?active = "active show":active = ""
     %>      
-    
         <div class="tab-pane fade <%= active %>" id="<%= id %>" role="tabpanel" aria-labelledby="<%= id %>-tab">
             <%- include planilha_table.ejs %>
-            <!--
-            <div>
-                <table class="table table-striped">
-                <thead>
-                    <th colspan="3" scope="col">Conta</th>
-                    <th colspan="1" scope="col">Valor</th>
-                </thead>
-                <tbody>                    
-                    <% for(var c=0; c < contas.length;c++){  %>
-                        <% (contas[c].status == 'S')? st = true:false%>
-                        <% (contas[c].status == 'N')? valorPagar += contas[c].parcela : valorPagar = valorPagar  %>
-                        <% 
-                            
-                            (contas[c].status == 'S')? colorbg = "background-color:#C7ED99" : colorbg = ""
-                        %>
-
-                       <tr style="<%= colorbg %>">
-                           <td colspan="2"><%= contas[c].nome %></td>
-                           <td colspan="2"><%= "R$ "+contas[c].parcela.toFixed(2).replace(".",",") %></td>
-                       </tr>                         
-                    <% } %>
-                </tbody>
-                <tfoot>
-                    <%
-                    var color = "white";
-                     (st)?color = "green":color = "#EC7063" 
-                     %>
-                    <tr style="background-color:<%= color %>" >
-                        <td>Valor total Mês</td>
-                        <td><%= valor %></td>
-                        <td style="background-color:#EC7063">Saldo a pagar Mês</td>
-                        <td style="background-color:#EC7063"><%= valorPagar.toFixed(2).replace(".",",") %></td>
-                    </tr>
-                </tfoot>
-                </table>
-            </div>-->
-
         </div>
     <%
     

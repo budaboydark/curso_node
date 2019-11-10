@@ -5,6 +5,7 @@ module.exports = function(app) {
         var connection = app.config.dbConnection();
         var data = req.params.id;
         (data)?data = req.params.id:data = new Date().getFullYear()  
+        const year = data
         contasModel.getContasMes(data,connection, function(erro, result) {
             var mensal = []
             var contas = []
@@ -50,12 +51,12 @@ module.exports = function(app) {
                     desc: contas[elements],
                     id : idel
                 })
-		});
+        });
             var numeral = require('numeral')
             var data = {
                 dados: dataEl
             }
-            res.render('planilhas/planilha', { dados: data.dados, numeral:numeral })            
+            res.render('planilhas/planilha', { dados: data.dados,ano: year, numeral:numeral })            
         })
 
         
