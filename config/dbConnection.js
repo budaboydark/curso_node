@@ -1,30 +1,17 @@
 require('dotenv').config();
-
+// UTILIZAR PM2
 var mysql = require('mysql');
-
-const env = (process.env.APP_ENV).toUpperCase();
 var params = {
-	dev : {
-		host : process.env.DBHOST_DEV,
-		user : process.env.DBUSER_DEV,
-		password : process.env.DBPASS_DEV,
-		database : process.env.DBDATABASE_DEV,
-		port : process.env.DBPORT_DEV,
+	db : {
+		host : process.env.DBHOST,
+		user : process.env.DBUSER,
+		password : process.env.DBPASS,
+		database : process.env.DBDATABASE,
+		port : process.env.DBPORT,
 
-	},
-	local : { 
-		host : process.env.DBHOST_LOCAL,
-		user : process.env.DBUSER_LOCAL,
-		password : process.env.DBPASS_LOCAL,
-		database : process.env.DBDATABASE_LOCAL,
-		port : process.env.DBPORT_LOCAL,
 	}
 }
-var conn = params.local;
-	if(env == 'DEV'){
-		console.log('DEV')
-		conn = params.dev;
-	}
+var conn = params.db;
 var connMysql = mysql.createConnection(conn)
 
 	connMysql.connect(function(err){
