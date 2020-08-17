@@ -33,3 +33,16 @@ $('.payment-all-monthy-js').click((element) => {
     }
   })
 })
+
+$('.payment-all-monthy-revert-js').click((element) => {
+  var dataId = (element.delegateTarget.getAttribute('data-id')).split('-')
+  var month = dataId[0]
+  var year = dataId[1]
+  $.ajax({
+    url: '/payment-all-month-revert/'+month+'/'+year,
+    success: (data) => {
+      console.log(data)
+      window.location.reload()
+    }
+  })
+})

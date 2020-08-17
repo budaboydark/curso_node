@@ -10,6 +10,11 @@ module.exports = function() {
         connection.query("UPDATE contas_pagar SET valorpago = valorparcela, status='S' WHERE MONTH(vencimento) = '"+dados.m+"' AND YEAR(vencimento) = '"+dados.y+"'",null,callback)
     }
 
+    this.updateContasPagarPaymentAllMonthRevert = (dados,connection,callback) => {
+        console.log(dados)
+        connection.query("UPDATE contas_pagar SET valorpago = valorparcela, status='N' WHERE MONTH(vencimento) = '"+dados.m+"' AND YEAR(vencimento) = '"+dados.y+"'",null,callback)
+    }
+
     this.updateContaPagar = (dados,connection,callback) => {
         connection.query("UPDATE contas_pagar SET valorpago = "+dados.valorpago+", vencimento='"+dados.vencimento+"', status='"+dados.status+"' WHERE id = "+dados.id,null,callback)
     }

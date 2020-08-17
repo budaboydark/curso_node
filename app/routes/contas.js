@@ -124,4 +124,21 @@ module.exports = function(app) {
         return
     })
 
+    app.get('/payment-all-month-revert/:m/:y',function (req, res){
+
+        var params = req.params
+        var contasModel = app.app.models.contas
+        var connection = app.config.dbConnection()
+
+        contasModel.updateContasPagarPaymentAllMonthRevert(params,connection,function(erro,result){
+            if(erro){
+                console.log(erro)
+                res.status(500).send(erro)
+            }else{
+                res.status(200).send('atualizado')
+            }
+        })
+        return
+    })
+
 }
