@@ -16,7 +16,7 @@ app.use(expressValidator())
 app.use(express.static('skins/template1'))
 
 consign()
-    .include('./app/routes')	
+    .include('./app/routes')
     .then('./config/dbConnection.js')
     .then('./app/controllers')
     .then('./app/models')

@@ -20,7 +20,11 @@ module.exports = function() {
     }
 
     this.updateContaVencimento = (dados,connection,callback) => {
-        connection.query("UPDATE contas_pagar SET vencimento='"+dados.vencimento+"', status='"+dados.status+"' WHERE id = "+dados.id,null,callback)
+        let valor = '';
+        if(dados.valor){
+            valor = ', valorparcela='+dados.valor;
+        }
+        connection.query("UPDATE contas_pagar SET vencimento='"+dados.vencimento+"', status='"+dados.status+"'"+valor+" WHERE id = "+dados.id,null,callback)
     }
 
     this.insertContasPagar = (dados,connection,callback) => {

@@ -2,10 +2,20 @@
 <% if (message) { %>
     <h3><%= message %></h3>
 <% } %>
+<link href="/css/sb-admin-2.min.css" rel="stylesheet">
+<style>
+    .form-control{
+        max-width: 20%;
+    }
+</style>
 <form action="/contas_pagar/atualizar/v/<%- id %>" method="POST">
     <div class="form-group">
         <label>Vencimento</label>
         <input type="date" class="date" name="vencimento" />
+    </div>
+    <div class="form-group">
+        <label>Valor Parcela</label>
+        <input type="text" class="form-control form-control-user money" name="valor" />
     </div>
     <div class="form-group">
         <input type="submit" class="btn btn-primary" value="gravar">

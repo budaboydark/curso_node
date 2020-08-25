@@ -1,3 +1,13 @@
+<style>
+    .link-p{
+        padding: 4px;
+        background-color: rgb(170, 180, 180);
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 0.5em;
+        color: darkred;
+    }
+</style>
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
@@ -70,8 +80,8 @@
                             </td>
                             <td>
                                 <% if (status == 'N') { %>
-                                    <a href="/conta/atualizar/pagar/<%- id %>">pagar</a>
-                                    <a href="/conta/atualizar/vencimento/<%- id %>">alterar_vencimento</a>
+                                    <a class="link-p" href="/conta/atualizar/pagar/<%- id %>">pay</a>
+                                    <a class="link-p" href="/conta/atualizar/vencimento/<%- id %>">update</a>
                                     <% } else { %>
                                         Pago
                                         <% } %>
