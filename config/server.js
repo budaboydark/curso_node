@@ -10,7 +10,7 @@ app.set('views', './app/views')
 app.set('layouts','./app/views/index')
 
 app.use(expressLayouts)
-app.use(bodyParser.urlencoded())
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(expressValidator())
 app.use(express.static('skins/template1'))
