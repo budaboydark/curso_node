@@ -7,8 +7,12 @@ module.exports = (server) => {
     server.app.controllers.contas.bkp(server, req, res);
   });
 
-  server.get('/*',(req, res, next) => {
-      console.log(req.is('json'))
-      res.send(req.path)
-  })
-}
+  // server.get("/*", (req, res, next) => {
+  //   console.log(req.is("json"));
+  //   res.send(req.path);
+  // });
+
+  server.get("/captcha", (req, res, next) => {
+    res.render('home/captcha');
+  });
+};

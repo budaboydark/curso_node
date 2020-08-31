@@ -66,6 +66,7 @@ module.exports = function (app) {
       }
     });
   });
+
   app.post("/contas/gravar", function (req, res) {
     var contasModel = app.app.models.contas;
     var connection = app.config.dbConnection();
@@ -174,5 +175,39 @@ module.exports = function (app) {
       }
     );
     return;
+  });
+
+  app.get("/monthly_statistics", function (req, res){
+
+    var params = req.params;
+    var contasUtilsModel = app.app.models.contasUtil;
+    var connection = app.config.dbConnection();
+
+    var data = new Date();
+    var mes = (data.getUTCMonth()+2);
+    var ano = data.getFullYear();
+
+    if(params.mes){
+      mes = params.mes
+    }
+
+    if(params.ano){
+      ano = params.ano
+    }
+
+    contasUtilsModel.getTotalMes(mes,ano,connection,function(erro, result){
+      if (erro) {
+        res.send(erro);
+      } else {
+        let dados = {
+          total: result[0].total,
+          saldo: result[0].saldo,
+          mes: result[0].mes,
+          salario: 3700.00
+        }
+        res.send(dados);
+      }
+    });
+
   });
 };
