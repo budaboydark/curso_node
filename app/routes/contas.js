@@ -179,7 +179,7 @@ module.exports = function (app) {
 
   app.get("/monthly_statistics", function (req, res){
 
-    var params = req.params;
+    var params = req.query;
     var contasUtilsModel = app.app.models.contasUtil;
     var connection = app.config.dbConnection();
 

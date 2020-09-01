@@ -113,6 +113,26 @@ $(document).ready(function () {
   });
 
   /**
+  * Saldo Mes anterior
+  */
+  const dataAtual = ((new Date()).getMonth()) + 1;
+  const dataYearNow = ((new Date()).getFullYear());
+  $.ajax({
+    method: "GET",
+    url: "/monthly_statistics",
+    data: {
+      mes:dataAtual,
+      ano: dataYearNow
+    }
+  }).done(function (data) {
+    var saldo = data.saldo.toFixed(2).replace('.',',');
+    document.getElementById("rest-value-1").innerText = "R$ "+saldo;
+    document.getElementById("saldo-1").innerText = "Saldo Mês " + data.mes;
+
+  });
+
+
+  /**
    * PIE CHART INIT
    */
 
@@ -121,13 +141,17 @@ $(document).ready(function () {
     url: "/monthly_statistics",
   }).done(function (data) {
     
-    console.log(data);
     // Set new default font family and font color to mimic Bootstrap's default styling
     Chart.defaults.global.defaultFontFamily = "Nunito",'-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
     Chart.defaults.global.defaultFontColor = "#858796";
     // Pie Chart Example
     var ctx = document.getElementById("myPieChart");
     document.getElementById("pie-text").innerText = data.mes;
+    
+    var saldo = data.saldo.toFixed(2).replace('.',',');
+    document.getElementById("rest-value-2").innerText = "R$ "+saldo;
+    document.getElementById("saldo-2").innerText = "Saldo Mês " + data.mes;
+
     var myPieChart = new Chart(ctx, {
       type: "doughnut",
       data: {
