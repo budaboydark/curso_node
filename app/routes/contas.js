@@ -194,7 +194,7 @@ module.exports = function (app) {
     if(params.ano){
       ano = params.ano
     }
-
+    
     contasUtilsModel.getTotalMes(mes,ano,connection,function(erro, result){
       if (erro) {
         res.send(erro);

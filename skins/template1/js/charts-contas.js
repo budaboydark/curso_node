@@ -115,8 +115,9 @@ $(document).ready(function () {
   /**
   * Saldo Mes anterior
   */
-  const dataAtual = ((new Date()).getMonth()) + 1;
+  const dataAtual = ((new Date()).getMonth() + 1);
   const dataYearNow = ((new Date()).getFullYear());
+
   $.ajax({
     method: "GET",
     url: "/monthly_statistics",
@@ -136,9 +137,22 @@ $(document).ready(function () {
    * PIE CHART INIT
    */
 
+  var dataAtual2 = dataAtual
+  var dataYearNow2 = dataYearNow
+
+  if(dataAtual == '12'){
+    dataAtual2 = '01'
+    dataYearNow2 = parseInt(dataYearNow2) + 1
+    dataYearNow2 = dataYearNow2.toString()
+  }
+
   $.ajax({
     method: "GET",
     url: "/monthly_statistics",
+    data: {
+      mes:dataAtual2,
+      ano: dataYearNow2
+    }
   }).done(function (data) {
     
     // Set new default font family and font color to mimic Bootstrap's default styling
