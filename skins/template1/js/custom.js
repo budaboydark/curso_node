@@ -34,6 +34,10 @@ $('.payment-all-monthy-js').click((element) => {
   })
 })
 
+$('.formBancoJs').click((element) => {
+    $('#bancoFormUpdate').submit();
+});
+
 $('.payment-all-monthy-revert-js').click((element) => {
   var dataId = (element.delegateTarget.getAttribute('data-id')).split('-')
   var month = dataId[0]

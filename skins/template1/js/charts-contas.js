@@ -122,12 +122,12 @@ $(document).ready(function () {
     method: "GET",
     url: "/monthly_statistics",
     data: {
-      mes:dataAtual,
+      mes: dataAtual,
       ano: dataYearNow
     }
   }).done(function (data) {
-    var saldo = data.saldo.toFixed(2).replace('.',',');
-    document.getElementById("rest-value-1").innerText = "R$ "+saldo;
+    var saldo = data.saldo.toFixed(2).replace('.', ',');
+    document.getElementById("rest-value-1").innerText = "R$ " + saldo;
     document.getElementById("saldo-1").innerText = "Saldo Mês " + data.mes;
 
   });
@@ -140,30 +140,31 @@ $(document).ready(function () {
   var dataAtual2 = dataAtual
   var dataYearNow2 = dataYearNow
 
-  if(dataAtual == '12'){
+  if (dataAtual == '12') {
     dataAtual2 = '01'
     dataYearNow2 = parseInt(dataYearNow2) + 1
     dataYearNow2 = dataYearNow2.toString()
   }
-
+  dataAtual2++
   $.ajax({
     method: "GET",
     url: "/monthly_statistics",
     data: {
-      mes:dataAtual2,
+      mes: dataAtual2,
       ano: dataYearNow2
     }
   }).done(function (data) {
-    
+
+    console.log(data)
     // Set new default font family and font color to mimic Bootstrap's default styling
-    Chart.defaults.global.defaultFontFamily = "Nunito",'-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+    Chart.defaults.global.defaultFontFamily = "Nunito", '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
     Chart.defaults.global.defaultFontColor = "#858796";
     // Pie Chart Example
     var ctx = document.getElementById("myPieChart");
     document.getElementById("pie-text").innerText = data.mes;
-    
-    var saldo = data.saldo.toFixed(2).replace('.',',');
-    document.getElementById("rest-value-2").innerText = "R$ "+saldo;
+
+    var saldo = data.ssaldo.toFixed(2).replace('.', ',');
+    document.getElementById("rest-value-2").innerText = "R$ " + saldo;
     document.getElementById("saldo-2").innerText = "Saldo Mês " + data.mes;
 
     var myPieChart = new Chart(ctx, {

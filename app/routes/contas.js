@@ -90,7 +90,7 @@ module.exports = function (app) {
           contasModel.insertContasPagar(dados, connection, function (
             erro,
             result
-          ) {});
+          ) { });
         }
       }
       if (erro) {
@@ -177,37 +177,73 @@ module.exports = function (app) {
     return;
   });
 
-  app.get("/monthly_statistics", function (req, res){
+  app.get("/monthly_statistics", function (req, res) {
 
     var params = req.query;
     var contasUtilsModel = app.app.models.contasUtil;
     var connection = app.config.dbConnection();
 
     var data = new Date();
-    var mes = (data.getUTCMonth()+2);
+    var mes = (data.getUTCMonth() + 2);
     var ano = data.getFullYear();
 
-    if(params.mes){
+    if (params.mes) {
       mes = params.mes
     }
 
-    if(params.ano){
+    if (params.ano) {
       ano = params.ano
     }
-    
-    contasUtilsModel.getTotalMes(mes,ano,connection,function(erro, result){
+
+    contasUtilsModel.getTotalMes(mes, ano, connection, function (erro, result) {
+      console.log(result);
       if (erro) {
         res.send(erro);
       } else {
         let dados = {
           total: result[0].total,
           saldo: result[0].saldo,
+          ssaldo: result[0].ssaldo,
           mes: result[0].mes,
-          salario: 3700.00
+          salario: result[0].salario
         }
         res.send(dados);
       }
     });
 
   });
+
+  app.get("/banco", function (req, res) {
+    var bancoModel = app.app.models.banco;
+    var connection = app.config.dbConnection();
+    bancoModel.getLimiteLast(connection, function (erro, result) {
+      res.render("contas/banco_index", { limite: result });
+    });
+  });
+
+  app.post("/banco", function (req, res) {
+    var post = req.body;
+    post.total = post.total.replace(".", "");
+    post.total = post.total.replace(",", ".");
+
+    post.utilizado = post.utilizado.replace(".", "");
+    post.utilizado = post.utilizado.replace(",", ".");
+
+    var bancoModel = app.app.models.banco;
+    var connection = app.config.dbConnection();
+    // bancoModel.getLimiteLast(connection, function (erro, result) {
+    //   res.render("contas/banco_index",{ limite : result});
+    // });
+
+    bancoModel.updateBanco(post, connection, function (erro, result) {
+      if (erro) {
+        console.log(erro);
+      } else {
+        bancoModel.getLimiteLast(connection, function (erro, result) {
+          res.render("contas/banco_index", { limite: result });
+        });
+      }
+    });
+  });
+
 };

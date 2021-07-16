@@ -3,7 +3,7 @@ module.exports = {
     {
       name: "scontabil",
       script: "app.js",
-      cwd: "/home/rodrigo.silva/htdocs/scontabil",
+      cwd: "/home/rodrigo.silva/tarefas/scontabil",
       watch: ["app"],
       watch_delay: 1000,
       env: {
@@ -22,11 +22,11 @@ module.exports = {
       env_production: {
         NODE_ENV: "production",
         APP_ENV:"prod",
-        DBHOST:"localhost",
-        DBPASS:"rodrigo",
-        DBUSER:"rodrigo",
-        DBDATABASE:"banco_teste",
-        DBPORT:3310,
+        DBHOST:"172.17.0.2",
+        DBPASS:"fumsoluco679",
+        DBUSER:"root",
+        DBDATABASE:"scontabil",
+        DBPORT:3306,
         HOST: "localhost",
         PORT_PROXY: "3020",
       }

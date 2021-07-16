@@ -1,0 +1,61 @@
+<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Limite Banco</h6>
+        </div>
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <form id="bancoFormUpdate" action="/banco" method="POST">
+                    <table class="table table-bordered dataTable-js" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Total</th>
+                                <th>Utilizado</th>
+                                <th>Saldo</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=0; i < limite.length;i++){ var
+                                total=limite[i]["total"].toFixed(2).replace(".",","); var
+                                utilizado=limite[i]["utilizado"].toFixed(2).replace(".",","); %>
+                                <tr>
+                                    <td>
+                                        <input type="hidden" name="id" value="<%= limite[i]["id"]%>" />
+                                        <%= limite[i]["id"]%>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="total" id="total" class="money" value="<%= total%>" />
+                                    </td>
+                                    <td>
+                                        <input type="text" name="utilizado" id="utilizado" class="money" value="<%= utilizado%>" />
+                                    </td>
+                                    <td>
+                                        <%= (limite[i]["saldo"]) %>
+                                    </td>
+                                    <td><button class="btn btn-primary formBancoJs" type="button">Salvar</button></td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+<!-- Bootstrap core JavaScript-->
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<script src="/js/demo/datatables-demo.js"></script>

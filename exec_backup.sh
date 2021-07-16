@@ -11,7 +11,7 @@ fi
 echo 'executando backup'
 NOW=$(date '+%Y-%m-%d')
 echo 'iniciando backup'
-mysqldump -u rodrigo -prodrigo -P 3020 -h localhost banco_teste > public/db/${NOW}_dump.sql
+mysqldump --column-statistics=0 -u root -pfumsoluco679 -h 172.17.0.2 scontabil > public/db/${NOW}_dump.sql
 echo 'backup finalizado'
 exit
 
