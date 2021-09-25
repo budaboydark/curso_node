@@ -115,7 +115,7 @@ $(document).ready(function () {
   /**
   * Saldo Mes anterior
   */
-  const dataAtual = ((new Date()).getMonth() + 1);
+  const dataAtual = ((new Date()).getMonth() + 2);
   const dataYearNow = ((new Date()).getFullYear());
 
   $.ajax({
@@ -126,7 +126,7 @@ $(document).ready(function () {
       ano: dataYearNow
     }
   }).done(function (data) {
-    var saldo = data.saldo.toFixed(2).replace('.', ',');
+    var saldo = data.ssaldo.toFixed(2).replace('.', ',');
     document.getElementById("rest-value-1").innerText = "R$ " + saldo;
     document.getElementById("saldo-1").innerText = "Saldo Mês " + data.mes;
 
@@ -145,7 +145,7 @@ $(document).ready(function () {
     dataYearNow2 = parseInt(dataYearNow2) + 1
     dataYearNow2 = dataYearNow2.toString()
   }
-  dataAtual2++
+    console.log(dataAtual2++);
   $.ajax({
     method: "GET",
     url: "/monthly_statistics",
@@ -155,7 +155,6 @@ $(document).ready(function () {
     }
   }).done(function (data) {
 
-    console.log(data)
     // Set new default font family and font color to mimic Bootstrap's default styling
     Chart.defaults.global.defaultFontFamily = "Nunito", '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
     Chart.defaults.global.defaultFontColor = "#858796";
@@ -166,6 +165,10 @@ $(document).ready(function () {
     var saldo = data.ssaldo.toFixed(2).replace('.', ',');
     document.getElementById("rest-value-2").innerText = "R$ " + saldo;
     document.getElementById("saldo-2").innerText = "Saldo Mês " + data.mes;
+
+    dataMonth(12,dataYearNow,3);
+    // dataMonth(12,dataYearNow,4);
+    // dataMonth(12,dataYearNow,5);
 
     var myPieChart = new Chart(ctx, {
       type: "doughnut",
@@ -204,3 +207,21 @@ $(document).ready(function () {
    * PIE CHART FINISH
    */
 });
+
+function dataMonth(dataAtual = null,dataYearNow = null,fix = 2){
+  $.ajax({
+    method: "GET",
+    url: "/monthly_statistics",
+    data: {
+      mes: dataAtual,
+      ano: dataYearNow
+    }
+  }).done(function (data) {
+    console.log(data);
+    var saldo = data.ssaldo.toFixed(2).replace('.', ',');
+    document.getElementById("rest-value-"+fix).innerText = "R$ " + saldo;
+    document.getElementById("saldo-"+fix).innerText = "Saldo Mês " + data.mes;
+
+  });
+
+}

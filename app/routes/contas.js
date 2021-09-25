@@ -74,6 +74,7 @@ module.exports = function (app) {
     post.valor = post.valor.replace(".", "");
     post.valor = post.valor.replace(",", ".");
 
+    post.usuario = req.session.login.id
     contasModel.insertConta(post, connection, function (erro, result) {
       if (req.body.tipo == "pagar") {
         var id = result.insertId;
@@ -196,7 +197,6 @@ module.exports = function (app) {
     }
 
     contasUtilsModel.getTotalMes(mes, ano, connection, function (erro, result) {
-      console.log(result);
       if (erro) {
         res.send(erro);
       } else {
@@ -213,15 +213,15 @@ module.exports = function (app) {
 
   });
 
-  app.get("/banco", function (req, res) {
+  app.route("/banco")
+  .get( function (req, res) {
     var bancoModel = app.app.models.banco;
     var connection = app.config.dbConnection();
     bancoModel.getLimiteLast(connection, function (erro, result) {
       res.render("contas/banco_index", { limite: result });
     });
-  });
-
-  app.post("/banco", function (req, res) {
+  })
+  .post( function (req, res) {
     var post = req.body;
     post.total = post.total.replace(".", "");
     post.total = post.total.replace(",", ".");
@@ -244,6 +244,63 @@ module.exports = function (app) {
         });
       }
     });
+  });
+  // app.get("/banco", function (req, res) {
+  //   var bancoModel = app.app.models.banco;
+  //   var connection = app.config.dbConnection();
+  //   bancoModel.getLimiteLast(connection, function (erro, result) {
+  //     res.render("contas/banco_index", { limite: result });
+  //   });
+  // });
+
+  // app.post("/banco", function (req, res) {
+  //   var post = req.body;
+  //   post.total = post.total.replace(".", "");
+  //   post.total = post.total.replace(",", ".");
+
+  //   post.utilizado = post.utilizado.replace(".", "");
+  //   post.utilizado = post.utilizado.replace(",", ".");
+
+  //   var bancoModel = app.app.models.banco;
+  //   var connection = app.config.dbConnection();
+  //   // bancoModel.getLimiteLast(connection, function (erro, result) {
+  //   //   res.render("contas/banco_index",{ limite : result});
+  //   // });
+
+  //   bancoModel.updateBanco(post, connection, function (erro, result) {
+  //     if (erro) {
+  //       console.log(erro);
+  //     } else {
+  //       bancoModel.getLimiteLast(connection, function (erro, result) {
+  //         res.render("contas/banco_index", { limite: result });
+  //       });
+  //     }
+  //   });
+  // });
+
+
+  app.get("/salario", function (req, res) {
+    var salarioModel = app.app.models.salario;
+    var connection = app.config.dbConnection();
+    salarioModel.get(connection, function (erro, result) {
+      res.render("contas/salario_index", { salario: result });
+    });
+  });
+
+  app.get("/form/salario", function (req, res) {
+    res.render("admin/form_add_salario");
+  });
+
+  app.post("/salario", function (req, res) {
+    var post = req.body;
+    post.valor = post.valor.replace(".", "");
+    post.valor = post.valor.replace(",", ".");
+
+    var salarioModel = app.app.models.salario;
+    var connection = app.config.dbConnection();
+    salarioModel.insert(post,connection,function(erro, result){
+      res.redirect("salario");
+    });    
   });
 
 };

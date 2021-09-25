@@ -4,7 +4,7 @@ module.exports = {
       name: "scontabil",
       script: "app.js",
       cwd: "/home/rodrigo.silva/tarefas/scontabil",
-      watch: ["app"],
+      watch: ["app","config"],
       watch_delay: 1000,
       env: {
       },
@@ -22,9 +22,9 @@ module.exports = {
       env_production: {
         NODE_ENV: "production",
         APP_ENV:"prod",
-        DBHOST:"172.17.0.2",
-        DBPASS:"fumsoluco679",
-        DBUSER:"root",
+        DBHOST:"172.18.0.2",
+        DBPASS:"rodrigo",
+        DBUSER:"rodrigo",
         DBDATABASE:"scontabil",
         DBPORT:3306,
         HOST: "localhost",

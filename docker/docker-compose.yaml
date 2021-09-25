@@ -1,0 +1,27 @@
+version: '3'
+services:
+    sc-mysql8:
+        container_name: scontabil_db
+        image: mysql:8.0
+        cap_add:
+            - SYS_NICE
+        environment:
+          - "MYSQL_ROOT_PASSWORD=rodrigo"
+          - "MYSQL_DATABASE=scontabil"
+        ports:
+          - "33062:3306"
+        volumes:
+          - "./mysql8/data:/var/lib/mysql"
+          - "./mysql8/mycustom.cnf:/etc/mysql/conf.d/custom.cnf"
+          - "./mysql8/docker-entrypoint-initdb.d/init-script.sql:/docker-entrypoint-initdb.d/init-script.sql"
+        networks: 
+            scontabilnetwork:
+                ipv4_address: 172.18.0.2
+networks:
+    scontabilnetwork:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.18.0.0/16
+volumes:
+    mysql8.0:

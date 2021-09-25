@@ -1,17 +1,14 @@
 module.exports = function() {
 
     this.insertConta = (dados,connection,callback) => {        
-        dados.usuario = 14
         connection.query("INSERT INTO contas SET ?",dados,callback)
     }
 
     this.updateContasPagarPaymentAllMonth = (dados,connection,callback) => {
-        console.log(dados)
         connection.query("UPDATE contas_pagar SET valorpago = valorparcela, status='S' WHERE MONTH(vencimento) = '"+dados.m+"' AND YEAR(vencimento) = '"+dados.y+"'",null,callback)
     }
 
     this.updateContasPagarPaymentAllMonthRevert = (dados,connection,callback) => {
-        console.log(dados)
         connection.query("UPDATE contas_pagar SET valorpago = valorparcela, status='N' WHERE MONTH(vencimento) = '"+dados.m+"' AND YEAR(vencimento) = '"+dados.y+"'",null,callback)
     }
 
@@ -40,7 +37,7 @@ module.exports = function() {
     }
 
     this.getContasMes = (ano,connection,callback) => {
-        connection.query("SELECT valorparcela as parcela,MONTH(vencimento) as vencimento, nome, vencimento as data_venc,status, flag FROM contas_pagar WHERE YEAR(vencimento) = '"+ano+"' ORDER BY MONTH(vencimento) ASC;",callback)
+        connection.query("SELECT valorparcela as parcela,MONTH(vencimento) as vencimento, nome, DATE_FORMAT(vencimento,'%d/%m/%Y') as data_venc,status, flag FROM contas_pagar WHERE YEAR(vencimento) = '"+ano+"' ORDER BY MONTH(vencimento) ASC;",callback)
     }
 
 

@@ -1,0 +1,20 @@
+<h1>Cadastrar Salário</h1>
+<link href="/css/sb-admin-2.min.css" rel="stylesheet">
+<style>
+    .form-control{
+        max-width: 20%;
+    }
+</style>
+<form action="/salario" method="POST">
+    <div class="form-group">
+        <label>Vencimento</label>
+        <input type="date" class="date" name="data" />
+    </div>
+    <div class="form-group">
+        <label>Salário Liquido</label>
+        <input type="text" class="form-control form-control-user money" name="valor" />
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="gravar">
+    </div>
+</form>
