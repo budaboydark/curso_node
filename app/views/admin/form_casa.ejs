@@ -1,0 +1,24 @@
+<h1>Cadastrar Despesa</h1>
+<link href="/css/sb-admin-2.min.css" rel="stylesheet">
+<style>
+    .form-control{
+        max-width: 20%;
+    }
+</style>
+<form action="/casa" method="POST">
+    <div class="form-group">
+        <label>Descrição</label>
+        <input type="text" name="descricao" />
+    </div>
+    <div class="form-group">
+        <label>Despesa</label>
+        <input type="text" class="form-control form-control-user money" name="despesa" />
+    </div>
+    <div class="form-group">
+        <label>Vencimento</label>
+        <input type="date" class="date" name="vencimento" />
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="gravar">
+    </div>
+</form>

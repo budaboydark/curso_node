@@ -23,7 +23,7 @@ module.exports = function (app) {
                     req.session.login = user;
                     res.redirect("/")
                 } else {
-                    res.render("admin/form_login", { msg: 'Falha no login, tente novamente' })
+                    res.render("admin/form_login", { msg: 'Falha no login, tente novamente 1' })
                 }
             } else {
                 res.render('admin/form_login', { msg: 'Falha no login, tente novamente' })

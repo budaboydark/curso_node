@@ -6,6 +6,7 @@ $(document).ready(function () {
     var anos = [];
     var valores = [];
     data.totais.forEach((element) => {
+      console.log(element)
       anos.push(element.ano);
       var valor = element.total;
       valores.push(valor);
@@ -115,7 +116,11 @@ $(document).ready(function () {
   /**
   * Saldo Mes anterior
   */
-  const dataAtual = ((new Date()).getMonth() + 2);
+  
+  let dataAtual = ((new Date()).getMonth() + 2);
+  if(dataAtual == 13){
+    dataAtual = 12;
+  }
   const dataYearNow = ((new Date()).getFullYear());
 
   $.ajax({
@@ -144,8 +149,10 @@ $(document).ready(function () {
     dataAtual2 = '01'
     dataYearNow2 = parseInt(dataYearNow2) + 1
     dataYearNow2 = dataYearNow2.toString()
+  }else{
+    dataAtual2++;
   }
-    console.log(dataAtual2++);
+    
   $.ajax({
     method: "GET",
     url: "/monthly_statistics",
@@ -154,7 +161,9 @@ $(document).ready(function () {
       ano: dataYearNow2
     }
   }).done(function (data) {
-
+    console.log(dataAtual2)
+    console.log(dataYearNow2)
+    console.log(data)
     // Set new default font family and font color to mimic Bootstrap's default styling
     Chart.defaults.global.defaultFontFamily = "Nunito", '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
     Chart.defaults.global.defaultFontColor = "#858796";
@@ -166,7 +175,7 @@ $(document).ready(function () {
     document.getElementById("rest-value-2").innerText = "R$ " + saldo;
     document.getElementById("saldo-2").innerText = "Saldo Mês " + data.mes;
 
-    dataMonth(12,dataYearNow,3);
+    // dataMonth(12,dataYearNow,3);
     // dataMonth(12,dataYearNow,4);
     // dataMonth(12,dataYearNow,5);
 

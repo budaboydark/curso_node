@@ -1,0 +1,63 @@
+<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Lista geral despesas casa</h6>
+        </div>
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <form id="casaFormUpdate" action="/casa" method="POST">
+                    <table class="table table-bordered dataTable-js" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Descricao</th>
+                                <th>Despesa</th>
+                                <th>Vencimento</th>
+                                <th>Pago</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=0; i < casa.length;i++){ var
+                                total=casa[i]["despesa"].toFixed(2).replace(".",","); 
+                                    %>
+                                <tr>
+                                    <td>
+                                        <input type="hidden" name="id" value="<%= casa[i]['idcasa'] %>" />
+                                        <%= casa[i]['idcasa']%>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="descricao" id="descricao" value="<%= casa[i]['descricao'] %>" />
+                                    </td>
+                                    <td>
+                                        <input type="text" name="total" id="total" class="money" value="<%= total %>" />
+                                    </td>
+                                    <td><%= casa[i]['vencimento'] %></td>
+                                    <td>
+                                        <input type="text" name="pago" id="pago" value="<%= casa[i]['pago'] %>" />
+                                    </td>
+                                    <td><button class="btn btn-primary formCasaJs" type="button">Salvar</button></td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+<!-- Bootstrap core JavaScript-->
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<script src="/js/demo/datatables-demo.js"></script>

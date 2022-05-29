@@ -1,3 +1,5 @@
+const { exit } = require("shelljs");
+
 module.exports = function (app) {
   app.get("/contas-anual", async function (req, res) {
     var contasModel = app.app.models.contas;
@@ -295,12 +297,64 @@ module.exports = function (app) {
     var post = req.body;
     post.valor = post.valor.replace(".", "");
     post.valor = post.valor.replace(",", ".");
+    post.user_id = req.session.login.id;
 
     var salarioModel = app.app.models.salario;
     var connection = app.config.dbConnection();
     salarioModel.insert(post,connection,function(erro, result){
       res.redirect("salario");
     });    
+  });
+
+  app.get("/reorganiza/:id",function (req,res) {
+    var params = req.params
+    var contasModel = app.app.models.contas;
+    var connection = app.config.dbConnection();
+    
+    var mesT = 12;
+    var yearT = 12;
+    var dates = '';
+    var year = '';
+    var day = '';
+    var month = '';
+    var dataFormat = '';
+
+    contasModel.getContasReorganiza(params.id,connection, function (erro, result) {
+      /*
+      result.forEach(function (data){
+        if (data.vencimento){
+          dates = data.vencimento.split('-');
+          year = dates[0];
+          day = dates[2];
+          month = dates[1];
+          console.log(year,day,month)        
+          console.log(data.id,data.vencimento)
+        }else{
+          if(month == 12){
+            month = 1
+            year++
+          }else{
+            month++
+          }
+
+          if(month > 0 && month < 10){
+            dataFormat = ''+year+'-0'+month+'-'+day+''  
+          }else{
+            dataFormat = ''+year+'-'+month+'-'+day+''
+          }
+          console.log(data.id,dataFormat)
+          contasModel.putContasReorganiza(data.id,dataFormat,connection,function (erro, result){
+            console.log(result)
+          })
+          
+        }
+        exit
+      });
+      */
+      
+      res.send(result);
+    });
+    // res.send('teste')
   });
 
 };

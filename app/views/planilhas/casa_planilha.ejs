@@ -1,0 +1,47 @@
+ <!-- Custom styles for this template -->
+ <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+ <div class="container">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <% 
+        var active2 = '';
+        for(var tab=0; tab < dados.length;tab++){   
+        %>
+            <% var id_tab = dados[tab].id %>
+            <% var mes_tab = dados[tab].mes %>
+            <% 
+            (tab == 0)?active2 = 'active':active2= ''
+            %>
+            <li class="nav-item">
+                    <a class="nav-link <%= active%>" id="<%= id_tab %>-tab" data-toggle="tab" href="#<%= id_tab%>" role="tab" aria-controls="1" aria-selected="true"><%= mes_tab%></a>
+            </li>
+        <% } %>
+    </ul>
+</div>
+<div class="tab-content" id="nav-tabContent">
+    <% 
+        var active = "active show"        
+        for(var i=0; i < dados.length;i++){
+            var valor = "R$ "+dados[i].valor.toFixed(2).replace(".",",")
+            var valorPagar = 0.00
+            var contas = dados[i].desc
+            var st = false;
+            var id = dados[i].id;
+            var colorbg = "";
+            (i == 0)?active = "active show":active = ""
+    %>      
+        <div class="tab-pane fade <%= active %>" id="<%= id %>" role="tabpanel" aria-labelledby="<%= id %>-tab">
+            <%- include casa_planilha_table.ejs %>
+        </div>
+    <%
+    
+        }
+    %>
+</div>
+<!-- <script src="/vendor/jquery/jquery.slim.min.js"></script> -->
+<script src="/vendor/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+<!-- Bootstrap core JavaScript-->
+<script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="/js/demo/datatables-demo.js"></script>

@@ -57,5 +57,13 @@ module.exports = function() {
         await connection.query(" SELECT YEAR(vencimento) as ano, SUM(valorparcela) as total FROM contas_pagar WHERE vencimento IS NOT NULL AND YEAR(vencimento) = '"+ano+"' AND valorpago IS NULL GROUP BY YEAR(vencimento)",callback)
     }
 
+    this.getContasReorganiza = (id, connection, callback) => {
+        connection.query("SELECT id,date_format(vencimento,'%Y-%m-%d') as vencimento FROM contas_pagar WHERE idcontas = " + id, callback)
+    }
+    
+    this.putContasReorganiza = (id,vencimento,connection, callback) => {
+        connection.query("UPDATE contas_pagar SET vencimento='"+vencimento+"' WHERE id = " + id, callback)
+    }
+
     return this
 }

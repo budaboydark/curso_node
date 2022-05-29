@@ -4,7 +4,7 @@ module.exports = function () {
     }
 
     this.insert = (post, connection, callback) => {
-        connection.query("INSERT INTO salario SET valor="+post.valor+", data='"+post.data+"'", callback)
+        connection.query("INSERT INTO salario SET valor="+post.valor+", data='"+post.data+"', user_id="+post.user_id, callback)
     }
 
     this.get = (connection,callback) => {
